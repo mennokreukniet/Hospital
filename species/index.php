@@ -1,6 +1,13 @@
 <?php
 	require_once "index.logic.php";
 	include "../common/header.php";
+
+	$db = new mysqli('localhost','root','','hospital');
+
+	$query = "SELECT * FROM species";
+	$result = $db->query($query);
+	
+	$species = $result->fetch_all(MYSQLI_ASSOC);
 ?>
 	<link rel="stylesheet" type="text/css" href="../common/main.css">
 	<h1>Species</h1>

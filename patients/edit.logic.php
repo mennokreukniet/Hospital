@@ -1,25 +1,34 @@
 <?php
-	if ($_SERVER["REQUEST_METHOD"] == "GET"):
+	$connection = new mysqli('localhost','root','','hospital');
+
+	if ($_SERVER["REQUEST_METHOD"] == "GET") {
 		$patient = NULL;
-		if (isset($_GET['id'])):
+		if (isset($_GET['id'])) {
 			// Get Patient for id
-			$db = new mysqli('localhost','root','','hospital');
-			$id = $db->escape_string($_GET["id"]);
-			
-			$query = "select * from patient where id=$id";
-			$result = $db->query($query);
+			$sql = "SELECT * FROM clients";
+			$result = $connection->query($sql);
+		    $clients = $result->fetch_all(MYSQLI_ASSOC);
+
+			$sql = "SELECT * FROM species";
+			$result = $connection->query($sql);
+		    $species= $result->fetch_all(MYSQLI_ASSOC);
+
+		    $id = $connection->escape_string($_GET["id"]);
+		    
+			$sql = "SELECT * FROM patient where id=$id";
+			$result = $connection->query($sql);
+		    $patient = $result->fetch_assoc();
 		
-			$patient = $result->fetch_assoc();		
-		endif;
-		if ($patient == NULL):
+		}
+		if ($patient == NULL) {
 			// No patient found
 			http_response_code(404);
 			include("../common/not_found.php");
 			exit();
-		endif;
-	elseif ($_SERVER["REQUEST_METHOD"] == "POST"):
+		}
+	} elseif ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$db = new mysqli('localhost','root','','hospital');
-		
+
 		// Prepare data for update
 		$id = $db->escape_string($_POST["id"]);
 		$name = $db->escape_string($_POST["name"]);
@@ -29,12 +38,13 @@
 		$client = $db->escape_string($_POST["client"]);
 		
 		// Prepare query and execute
-		$query = "update patient set name='$name', species='$species', status='$status', gender='$gender', client='$client' where id=$id";
+		$query = "UPDATE patient SET patient_name='$name', species=$species, status='$status', client=$client, gender='$gender' WHERE id=$id";
 		$result = $db->query($query);
-	
-    // Tell the browser to go back to the index page.
-    header("Location: ./");
-    exit();
-	endif;
-
+		var_dump($query);
+		var_dump($gender);
+		var_dump($_POST);
+    	// Tell the browser to go back to the index page.
+    	//header("Location: ./");
+    	exit();
+	}
 ?>

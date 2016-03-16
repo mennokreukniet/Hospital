@@ -2,26 +2,25 @@
 
 	require_once "edit.logic.php";
 	include "../common/header.php";
-
-	$db = new mysqli('localhost','root','','hospital');
-
-	$query = "select * from clients";
-
-	$result = $db->query($query);
-	
-	$clients = $result->fetch_all(MYSQLI_ASSOC);
-
 ?>
 	<h1>Edit patiënt</h1>
 	<form method="post">
 		<div>
 			<input type="hidden" name="id" value="<?=$patient['id']?>">
 			<label for="name">Name:</label>
-			<input type="text" id="name" name="name" value="<?=$patient['name']?>">
+			<input type="text" id="name" name="name" value="<?=$patient['patient_name']?>">
 		</div>
 		<div>
 			<label for="name">Species:</label>
-			<input type="text" id="species" name="species" value="<?=$patient['species']?>">
+			<select name ="species">
+			<?php
+				foreach ($species as $specie) {
+				?>
+					<option <?php if ($specie['id'] == $patient['species']) { echo "selected=\"true\""; } ?> value="<?php echo $specie['id']?>"><?php echo $specie['species']; ?></option>
+				<?php
+				}
+			?>
+			</select>
 		</div>
 		<div>
 			<label for="name">Status:</label>
@@ -36,11 +35,11 @@
 			<label for="name">Client:</label>
 			<select name="client">
 				<?php 
-					foreach ($clients as $client):
+					foreach ($clients as $client){
 				?>
-				<option value="<?php echo $client['name']?>"><?php echo $client['name']; ?></option>
+				<option value="<?php echo $client['client_id']?>"><?php echo $client['name']; ?></option>
 				<?php
-					endforeach;
+					}
 				?>
 			</select>
 		</div>
