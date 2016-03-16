@@ -8,7 +8,7 @@
 		<div>
 			<input type="hidden" name="id" value="<?=$patient['id']?>">
 			<label for="name">Name:</label>
-			<span><?=$patient['name']?></span>
+			<span><?=$patient['patient_name']?></span>
 		</div>
 		<div>
 			<label for="name">Species:</label>

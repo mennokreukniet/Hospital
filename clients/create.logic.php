@@ -7,7 +7,7 @@
 		$id = $db->escape_string($_POST["id"]);
 		
 		// Prepare query and execute
-		$query = "insert into clients (name, id) values ('$name','$id')";
+		$query = "insert into clients (name, client_id) values ('$name','$id')";
 		$result = $db->query($query);
 	
     // Tell the browser to go back to the index page.

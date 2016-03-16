@@ -25,9 +25,9 @@
 ?>
 			<tr>
 				<td><?=$client['name']?></td>
-				<td><?=$client['id']?></td>
-				<td class="center"><a href="edit.php?id=<?=$client['id']?>">edit</a></td>
-				<td class="center"><a href="delete.php?id=<?=$client['id']?>">delete</a></td>
+				<td><?=$client['client_id']?></td>
+				<td class="center"><a href="edit.php?id=<?=$client['client_id']?>">edit</a></td>
+				<td class="center"><a href="delete.php?id=<?=$client['client_id']?>">delete</a></td>
 			</tr>
 
 <?php

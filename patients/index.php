@@ -1,6 +1,7 @@
 <?php
 	require_once "index.logic.php";
 	include "../common/header.php";
+	//var_dump($patients);
 ?>
 	<link rel="stylesheet" type="text/css" href="../common/main.css">
 	<h1>Patiënts</h1>
@@ -22,10 +23,10 @@
 	foreach($patients as $patient):
 ?>
 			<tr>
-				<td><?=$patient['name']?></td>
+				<td><?=$patient['patient_name']?></td>
 				<td><?=$patient['species']?></td>
 				<td><?=$patient['status']?></td>
-				<td><?=$patient['client']?></td>
+				<td><?=$patient['name']?></td>
 				<td><?=$patient['gender']?></td>
 				<td class="center"><a href="edit.php?id=<?=$patient['id']?>">edit</a></td>
 				<td class="center"><a href="delete.php?id=<?=$patient['id']?>">delete</a></td>

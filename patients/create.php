@@ -1,14 +1,6 @@
 <?php
 	require_once "create.logic.php";
 	include "../common/header.php";
-
-	$db = new mysqli('localhost','root','','hospital');
-
-	$query = "select * from clients";
-
-	$result = $db->query($query);
-	
-	$clients = $result->fetch_all(MYSQLI_ASSOC);
 ?>
 	<h1>New patiënt</h1>
 	<form method="post">
@@ -18,10 +10,18 @@
 		</div>
 		<div>
 			<label for="name">Species:</label>
-			<input type="text" id="species" name="species">
+			<select>
+				<?php
+					foreach ($species as $specie):
+				?>
+				<option value="<?php echo $specie['id']; ?>"><?php echo $specie['species']; ?></option>
+				<?php
+					endforeach;
+				?>
+			</select>
 		</div>
 		<div>
-			<label for="name">Species:</label>
+			<label for="name">Status:</label>
 			<textarea id="status" name="status"></textarea>
 		</div>
 		<div>
@@ -31,11 +31,11 @@
 			</div>
 			<div>
 				<label for="name">Client:</label>
-				<select>
+				<select name="client">
 					<?php 
 						foreach ($clients as $client):
 					?>
-					<option value="client"><?php echo $client['name']; ?></option>
+					<option value="<?php echo $client['client_id']; ?>"><?php echo $client['name']; ?></option>
 					<?php
 						endforeach;
 					?>
