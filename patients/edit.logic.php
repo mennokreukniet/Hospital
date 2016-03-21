@@ -40,11 +40,9 @@
 		// Prepare query and execute
 		$query = "UPDATE patient SET patient_name='$name', species=$species, status='$status', client=$client, gender='$gender' WHERE id=$id";
 		$result = $db->query($query);
-		var_dump($query);
-		var_dump($gender);
-		var_dump($_POST);
+
     	// Tell the browser to go back to the index page.
-    	//header("Location: ./");
+    	header("Location: ./");
     	exit();
 	}
 ?>
