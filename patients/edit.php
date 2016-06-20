@@ -17,7 +17,7 @@
 				foreach ($species as $specie) {
 				?>
 					<option <?php if ($specie['id'] == $patient['species']) { echo "selected=\"true\""; } ?> value="<?php echo $specie['id']?>"><?php echo $specie['species']; ?></option>
-				<?php
+			<?php
 				}
 			?>
 			</select>

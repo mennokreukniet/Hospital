@@ -3,14 +3,15 @@
 
 	if ($_SERVER["REQUEST_METHOD"] == "POST"){
 		// Prepare data for insertion
-		$name = $db->escape_string($_POST["name"]);
+		$patient_name = $db->escape_string($_POST["patient_name"]);
 		$species = $db->escape_string($_POST["species"]);
 		$status = $db->escape_string($_POST["status"]);
 		$gender = $db->escape_string($_POST["gender"]);
 		$client = $db->escape_string($_POST["client"]);
+
 		
 		// Prepare query and execute
-		$query = "INSERT INTO patient (name, species, status, gender, client) VALUES ('$name', $species, '$status', '$gender', $client)";
+		$query = "INSERT INTO patient (patient_name, species, status, gender, client) VALUES ('$patient_name', $species, '$status', '$gender', $client)";
 		$result = $db->query($query);
 
 		var_dump($query);
